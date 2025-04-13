@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heritage360 - AI-Powered Virtual Tours of India's Cultural Heritage</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#3b82f6',secondary:'#6366f1'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
+background-color: #111827;
+color: #f3f4f6;
+}
+.tour-viewer {
+position: relative;
+height: calc(100vh - 72px);
+background-image: url('https://readdy.ai/api/search-image?query=A%20stunning%20360-degree%20panoramic%20view%20of%20the%20Taj%20Mahal%20in%20Agra%2C%20India%2C%20with%20pristine%20white%20marble%20architecture%2C%20beautiful%20gardens%2C%20and%20reflecting%20pools.%20The%20image%20should%20have%20a%20high%20dynamic%20range%20showing%20the%20intricate%20details%20of%20the%20monument%20with%20a%20clear%20blue%20sky%20background.%20The%20perspective%20should%20be%20from%20the%20main%20entrance%20pathway.&width=1920&height=1080&seq=1&orientation=landscape');
+background-size: cover;
+background-position: center;
+}
+.hotspot {
+position: absolute;
+transform: translate(-50%, -50%);
+cursor: pointer;
+transition: all 0.3s ease;
+}
+.hotspot:hover .hotspot-pulse {
+transform: scale(1.2);
+}
+.hotspot-pulse {
+transition: transform 0.3s ease;
+}
+.timeline-progress {
+height: 4px;
+background-color: rgba(255, 255, 255, 0.3);
+border-radius: 2px;
+overflow: hidden;
+}
+.timeline-progress-bar {
+height: 100%;
+background-color: #3b82f6;
+border-radius: 2px;
+width: 35%;
+}
+.custom-range {
+-webkit-appearance: none;
+appearance: none;
+width: 100%;
+height: 4px;
+background: rgba(107, 114, 128, 0.5);
+border-radius: 2px;
+outline: none;
+}
+.custom-range::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 16px;
+height: 16px;
+background: #3b82f6;
+border-radius: 50%;
+cursor: pointer;
+}
+.custom-range::-moz-range-thumb {
+width: 16px;
+height: 16px;
+background: #3b82f6;
+border-radius: 50%;
+cursor: pointer;
+border: none;
+}
+.custom-switch {
+position: relative;
+display: inline-block;
+width: 40px;
+height: 20px;
+}
+.custom-switch input {
+opacity: 0;
+width: 0;
+height: 0;
+}
+.switch-slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(107, 114, 128, 0.5);
+transition: .4s;
+border-radius: 20px;
+}
+.switch-slider:before {
+position: absolute;
+content: "";
+height: 16px;
+width: 16px;
+left: 2px;
+bottom: 2px;
+background-color: white;
+transition: .4s;
+border-radius: 50%;
+}
+input:checked + .switch-slider {
+background-color: #3b82f6;
+}
+input:checked + .switch-slider:before {
+transform: translateX(20px);
+}
+.mini-map {
+background-image: url('https://readdy.ai/api/search-image?query=A%20top-down%20architectural%20floor%20plan%20or%20layout%20map%20of%20the%20Taj%20Mahal%20complex%20showing%20the%20main%20building%2C%20gardens%2C%20entrance%20gates%2C%20and%20surrounding%20structures.%20The%20map%20should%20be%20simple%2C%20clean%2C%20and%20minimalist%20with%20a%20white%20background%20and%20blue%20or%20black%20outlines.%20Include%20a%20small%20red%20dot%20indicating%20a%20visitors%20current%20position%20within%20the%20complex.&width=300&height=300&seq=2&orientation=squarish');
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
+}
+.loader {
+border: 3px solid rgba(255, 255, 255, 0.3);
+border-radius: 50%;
+border-top: 3px solid #3b82f6;
+width: 24px;
+height: 24px;
+animation: spin 1s linear infinite;
+}
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+.info-panel-scroll {
+scrollbar-width: thin;
+scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+.info-panel-scroll::-webkit-scrollbar {
+width: 4px;
+}
+.info-panel-scroll::-webkit-scrollbar-track {
+background: transparent;
+}
+.info-panel-scroll::-webkit-scrollbar-thumb {
+background-color: rgba(156, 163, 175, 0.5);
+border-radius: 20px;
+}
+</style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+<!-- Header Section -->
+<header class="bg-gray-800 shadow-sm">
+<div class="container mx-auto px-4 flex items-center justify-between h-18">
+<div class="flex items-center">
+<a href="Heritage360.html" class="text-2xl font-['Pacifico'] text-primary mr-8">Heritage360</a>
+<nav class="hidden md:flex space-x-6">
+<a href="#" class="font-medium text-primary">Home</a>
+<a href="Heritage360.html" data-readdy="true" class="font-medium text-gray-400 hover:text-primary transition">Explore</a>
+<a href="About.html" class="font-medium text-gray-400 hover:text-primary transition">About</a>
+<a href="#" class="font-medium text-gray-400 hover:text-primary transition">Contact</a>
+</nav>
+</div>
+<div class="relative mx-4 flex-grow max-w-md">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<div class="w-5 h-5 flex items-center justify-center text-gray-400">
+<i class="ri-search-line"></i>
+</div>
+</div>
+<input type="text" class="w-full pl-10 pr-4 py-2 border border-gray-700 rounded-full text-sm bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary" placeholder="Search heritage sites...">
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative">
+<button class="flex items-center text-gray-600 hover:text-primary transition">
+<span class="mr-1 text-sm">EN</span>
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-arrow-down-s-line"></i>
+</div>
+</button>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 transition">
+<i class="ri-user-3-line"></i>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Tour Viewer -->
+<main id="tourViewer" class="tour-viewer">
+<!-- Loading Indicator -->
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/50 rounded-lg p-4 flex flex-col items-center justify-center z-10" id="loader">
+<div class="loader mb-2"></div>
+<p class="text-white text-sm">Loading 3D assets...</p>
+</div>
+<!-- AI Tour Guide Toggle -->
+<div class="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-3 flex items-center z-10">
+<div class="w-8 h-8 flex items-center justify-center text-white mr-2">
+<i class="ri-robot-line"></i>
+</div>
+<div class="mr-3">
+<p class="text-white text-sm font-medium">AI Tour Guide</p>
+</div>
+<label class="custom-switch">
+<input type="checkbox" checked>
+<span class="switch-slider"></span>
+</label>
+</div>
+<!-- Tour Controls Panel -->
+<div class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 backdrop-blur-sm rounded-lg p-4 text-white z-10 w-64">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-medium">Tour Controls</h3>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition">
+<i class="ri-arrow-left-s-line"></i>
+</button>
+</div>
+<div class="mb-6">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center">
+<div class="w-6 h-6 flex items-center justify-center mr-2">
+<i class="ri-play-fill"></i>
+</div>
+<span class="text-sm">Playback</span>
+</div>
+<button id="controlPanelPlayBtn" class="w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white">
+<i class="ri-pause-fill"></i>
+</button>
+</div>
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center">
+<div class="w-6 h-6 flex items-center justify-center mr-2">
+<i class="ri-speed-line"></i>
+</div>
+<span class="text-sm">Speed</span>
+</div>
+<div class="flex items-center">
+<span class="text-xs mr-2">1.0x</span>
+<input type="range" min="0.5" max="2" step="0.1" value="1" class="custom-range w-20">
+</div>
+</div>
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center">
+<div class="w-6 h-6 flex items-center justify-center mr-2">
+<i class="ri-volume-up-line"></i>
+</div>
+<span class="text-sm">Narration</span>
+</div>
+<label class="custom-switch">
+<input type="checkbox" checked>
+<span class="switch-slider"></span>
+</label>
+</div>
+</div>
+<div class="mb-6">
+<h4 class="text-sm font-medium mb-3">Hotspots</h4>
+<ul class="space-y-2">
+<li class="flex items-center py-1 px-2 bg-white/10 rounded">
+<div class="w-5 h-5 flex items-center justify-center mr-2 text-primary">
+<i class="ri-checkbox-circle-fill"></i>
+</div>
+<span class="text-sm">Main Entrance</span>
+</li>
+<li class="flex items-center py-1 px-2 rounded">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-checkbox-blank-circle-line"></i>
+</div>
+<span class="text-sm">Central Chamber</span>
+</li>
+<li class="flex items-center py-1 px-2 rounded">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-checkbox-blank-circle-line"></i>
+</div>
+<span class="text-sm">Eastern Gardens</span>
+</li>
+<li class="flex items-center py-1 px-2 rounded">
+<div class="w-5 h-5 flex items-center justify-center mr-2">
+<i class="ri-checkbox-blank-circle-line"></i>
+</div>
+<span class="text-sm">Riverside View</span>
+</li>
+</ul>
+</div>
+<div>
+<h4 class="text-sm font-medium mb-2">Current Location</h4>
+<div class="mini-map h-36 rounded-md relative">
+<div class="absolute w-3 h-3 bg-red-500 rounded-full top-[45%] left-[30%] animate-pulse"></div>
+</div>
+</div>
+</div>
+<!-- Information Overlay -->
+<div class="absolute right-4 top-20 bottom-20 bg-black/50 backdrop-blur-sm rounded-lg p-4 text-white z-10 w-80 flex flex-col">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-semibold text-lg">Taj Mahal</h2>
+<div class="flex space-x-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition">
+<i class="ri-bookmark-line"></i>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition">
+<i class="ri-share-line"></i>
+</button>
+</div>
+</div>
+<div class="text-sm text-gray-400 mb-3">Agra, Uttar Pradesh • 1632-1653 CE</div>
+<div class="info-panel-scroll overflow-y-auto flex-grow pr-2">
+<p class="text-sm mb-4">
+The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in Agra, Uttar Pradesh, India. It was commissioned in 1632 by the Mughal emperor Shah Jahan to house the tomb of his favorite wife, Mumtaz Mahal.
+</p>
+<h3 class="font-medium text-primary mb-2">AI-Generated Historical Context</h3>
+<p class="text-sm mb-4">
+The Taj Mahal represents the finest example of Mughal architecture, combining elements from Persian, Ottoman Turkish, and Indian architectural styles. The construction involved over 20,000 artisans and craftsmen, and the project was completed in approximately 20 years. The symmetrical building features a large dome and is set in a formal garden.
+</p>
+<h3 class="font-medium text-primary mb-2">Key Highlights</h3>
+<ul class="text-sm space-y-2 mb-4">
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2 text-primary flex-shrink-0 mt-0.5">
+<i class="ri-checkbox-circle-line"></i>
+</div>
+<span>The main chamber houses the false tombs of Mumtaz Mahal and Shah Jahan</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2 text-primary flex-shrink-0 mt-0.5">
+<i class="ri-checkbox-circle-line"></i>
+</div>
+<span>The actual graves are at a lower level</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2 text-primary flex-shrink-0 mt-0.5">
+<i class="ri-checkbox-circle-line"></i>
+</div>
+<span>The marble used was sourced from Rajasthan, China, Tibet, Afghanistan, and Arabia</span>
+</li>
+<li class="flex">
+<div class="w-5 h-5 flex items-center justify-center mr-2 text-primary flex-shrink-0 mt-0.5">
+<i class="ri-checkbox-circle-line"></i>
+</div>
+<span>The minarets are designed to lean slightly outward to prevent damage to the main structure in case of collapse</span>
+</li>
+</ul>
+<h3 class="font-medium text-primary mb-2">Gallery</h3>
+<div class="grid grid-cols-3 gap-2">
+<img src="https://readdy.ai/api/search-image?query=Close-up%20detail%20of%20intricate%20marble%20inlay%20work%20and%20calligraphy%20on%20the%20walls%20of%20the%20Taj%20Mahal%2C%20showing%20the%20fine%20craftsmanship%20and%20detailed%20patterns%20with%20semi-precious%20stones%20against%20white%20marble%20background&width=120&height=120&seq=3&orientation=squarish" class="rounded object-cover w-full h-16 object-top">
+<img src="https://readdy.ai/api/search-image?query=Interior%20view%20of%20the%20Taj%20Mahals%20main%20chamber%20showing%20the%20cenotaphs%20and%20intricate%20marble%20screen%20work%20with%20natural%20light%20filtering%20through%2C%20creating%20a%20serene%20atmosphere&width=120&height=120&seq=4&orientation=squarish" class="rounded object-cover w-full h-16 object-top">
+<img src="https://readdy.ai/api/search-image?query=View%20of%20one%20of%20the%20Taj%20Mahals%20minarets%20against%20blue%20sky%2C%20showing%20the%20detailed%20architectural%20elements%20and%20the%20white%20marble%20texture%20in%20close%20detail&width=120&height=120&seq=5&orientation=squarish" class="rounded object-cover w-full h-16 object-top">
+<img src="https://readdy.ai/api/search-image?query=Taj%20Mahal%20reflection%20in%20the%20water%20of%20the%20long%20reflecting%20pool%20in%20the%20gardens%2C%20with%20perfectly%20symmetrical%20image%20and%20beautiful%20landscaping%20visible&width=120&height=120&seq=6&orientation=squarish" class="rounded object-cover w-full h-16 object-top">
+<img src="https://readdy.ai/api/search-image?query=View%20of%20the%20Taj%20Mahal%20from%20the%20Mehtab%20Bagh%20gardens%20across%20the%20Yamuna%20River%20at%20sunset%2C%20showing%20the%20monument%20in%20golden%20light%20with%20the%20river%20in%20the%20foreground&width=120&height=120&seq=7&orientation=squarish" class="rounded object-cover w-full h-16 object-top">
+<div class="rounded bg-gray-700/50 w-full h-16 flex items-center justify-center">
+<span class="text-white font-medium">+12</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Navigation Controls -->
+<div class="absolute bottom-20 right-4 bg-black/50 backdrop-blur-sm rounded-lg p-2 flex flex-col items-center space-y-2 z-10">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition text-white !rounded-button">
+<i class="ri-add-line"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition text-white !rounded-button">
+<i class="ri-subtract-line"></i>
+</button>
+<div class="w-full h-px bg-white/20 my-1"></div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition text-white !rounded-button">
+<i class="ri-compass-3-line"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition text-white !rounded-button">
+<i class="ri-drag-move-line"></i>
+</button>
+</div>
+<!-- Interactive Hotspots -->
+<div class="hotspot absolute top-[40%] left-[35%]">
+<div class="hotspot-pulse w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white">
+<i class="ri-information-line"></i>
+</div>
+</div>
+</div>
+<div class="hotspot absolute top-[60%] left-[55%]">
+<div class="hotspot-pulse w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white">
+<i class="ri-information-line"></i>
+</div>
+</div>
+</div>
+<div class="hotspot absolute top-[30%] left-[70%]">
+<div class="hotspot-pulse w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white">
+<i class="ri-cube-line"></i>
+</div>
+</div>
+</div>
+<!-- Virtual Guide Avatar -->
+<div class="absolute bottom-24 left-[20%] flex items-end">
+<div class="relative">
+<div class="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-black/70 backdrop-blur-sm rounded-lg p-3 w-64">
+<p class="text-white text-sm">The main dome of the Taj Mahal is 35 meters high and is surrounded by four smaller domes.</p>
+</div>
+<img src="https://readdy.ai/api/search-image?query=A%20professional%20female%20tour%20guide%20avatar%20with%20Indian%20features%2C%20wearing%20smart%20casual%20attire%20with%20a%20blue%20scarf%20or%20accessory.%20The%20image%20should%20be%20a%20friendly%2C%20welcoming%20bust%20portrait%20with%20a%20transparent%20background%2C%20suitable%20for%20a%20virtual%20tour%20guide%20interface.%20The%20expression%20should%20be%20warm%20and%20engaging%2C%20as%20if%20speaking%20to%20tourists.&width=120&height=160&seq=8&orientation=portrait" class="h-32 object-contain object-top">
+</div>
+</div>
+<!-- Bottom Control Bar -->
+<div class="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm p-4 flex items-center z-10">
+<div class="flex items-center mr-6">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition text-white mr-2 !rounded-button">
+<i class="ri-skip-back-line"></i>
+</button>
+<button id="bottomBarPlayBtn" class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white mr-2 !rounded-button">
+<i class="ri-pause-fill"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition text-white !rounded-button">
+<i class="ri-skip-forward-line"></i>
+</button>
+</div>
+<div class="flex-grow mx-4">
+<div class="flex items-center justify-between text-white text-xs mb-1">
+<span>Main Entrance</span>
+<span>1:45 / 5:20</span>
+</div>
+<div class="timeline-progress">
+<div class="timeline-progress-bar"></div>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="flex items-center bg-white/10 rounded-full p-1">
+<button id="view360Btn" class="px-3 py-1 rounded-full bg-primary text-white text-sm !rounded-button whitespace-nowrap">360°</button>
+<button id="view3DBtn" class="px-3 py-1 rounded-full text-white text-sm !rounded-button whitespace-nowrap">3D</button>
+<button id="viewARBtn" class="px-3 py-1 rounded-full text-white text-sm !rounded-button whitespace-nowrap">AR</button>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition text-white !rounded-button">
+<i class="ri-settings-3-line"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition text-white !rounded-button">
+<i class="ri-fullscreen-line"></i>
+</button>
+</div>
+</div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+let isPlaying = true;
+let isGuideEnabled = true;
+const controlPanelPlayBtn = document.getElementById('controlPanelPlayBtn');
+const bottomBarPlayBtn = document.getElementById('bottomBarPlayBtn');
+const aiGuideToggle = document.querySelector('.custom-switch input');
+const virtualGuide = document.querySelector('.absolute.bottom-24.left-\\[20\\%\\]');
+function toggleGuideState() {
+isGuideEnabled = !isGuideEnabled;
+if (isGuideEnabled) {
+virtualGuide.style.display = 'flex';
+} else {
+virtualGuide.style.display = 'none';
+}
+}
+aiGuideToggle.addEventListener('change', toggleGuideState);
+function togglePlayState() {
+isPlaying = !isPlaying;
+const iconClass = isPlaying ? 'ri-pause-fill' : 'ri-play-fill';
+controlPanelPlayBtn.querySelector('i').className = iconClass;
+bottomBarPlayBtn.querySelector('i').className = iconClass;
+if (isPlaying) {
+// Resume tour movement/narration
+console.log('Tour resumed');
+} else {
+// Pause tour movement/narration
+console.log('Tour paused');
+}
+}
+controlPanelPlayBtn.addEventListener('click', togglePlayState);
+bottomBarPlayBtn.addEventListener('click', togglePlayState);
+const hotspotInfo = {
+'hotspot-1': {
+title: 'Main Entrance Gateway',
+description: 'The grand entrance gateway, built of red sandstone, features stunning Arabic calligraphy with verses from the Quran. The gateway itself is a masterpiece of Mughal architecture, standing 23 meters high.',
+image: 'https://readdy.ai/api/search-image?query=Close%20up%20detailed%20view%20of%20the%20main%20entrance%20gateway%20of%20Taj%20Mahal%2C%20showing%20intricate%20Islamic%20calligraphy%20and%20geometric%20patterns%20carved%20in%20red%20sandstone%2C%20with%20ornate%20architectural%20details%20and%20archways&width=400&height=300&seq=10&orientation=landscape'
+},
+'hotspot-2': {
+title: 'Central Dome',
+description: 'The iconic central dome, reaching a height of 35 meters, is decorated with a lotus design and topped with a gilded finial. The dome combines Persian and Hindustani decorative elements.',
+image: 'https://readdy.ai/api/search-image?query=Detailed%20architectural%20view%20of%20the%20Taj%20Mahals%20main%20central%20dome%20showing%20the%20lotus%20design%20pattern%2C%20intricate%20marble%20work%2C%20and%20the%20gilded%20finial%20at%20the%20top%20against%20blue%20sky&width=400&height=300&seq=11&orientation=landscape'
+},
+'hotspot-3': {
+title: 'Pietra Dura Artwork',
+description: 'The walls feature exquisite pietra dura (inlay work) using semi-precious stones. Each flower design can contain up to 64 individual pieces of carved stones.',
+image: 'https://readdy.ai/api/search-image?query=Extreme%20close%20up%20of%20pietra%20dura%20inlay%20work%20on%20Taj%20Mahal%20walls%20showing%20detailed%20floral%20patterns%20made%20with%20semi-precious%20stones%20in%20white%20marble%2C%20demonstrating%20intricate%20craftsmanship&width=400&height=300&seq=12&orientation=landscape'
+}
+};
+// Create popup element
+const popup = document.createElement('div');
+popup.className = 'fixed hidden z-50';
+popup.innerHTML = `
+<div class="bg-black/50 backdrop-blur-sm rounded-lg p-4 text-white max-w-md">
+<div class="flex justify-between items-center mb-3">
+<h3 class="text-lg font-semibold"></h3>
+<button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition close-popup">
+<i class="ri-close-line"></i>
+</button>
+</div>
+<img class="w-full h-48 object-cover rounded mb-3" />
+<p class="text-sm"></p>
+</div>
+`;
+document.body.appendChild(popup);
+// Simulate loading
+setTimeout(function() {
+document.getElementById('loader').style.display = 'none';
+}, 2000);
+// View mode switching
+const view360Btn = document.getElementById('view360Btn');
+const view3DBtn = document.getElementById('view3DBtn');
+const tourViewer = document.getElementById('tourViewer');
+view3DBtn.addEventListener('click', function() {
+view360Btn.classList.remove('bg-primary');
+view3DBtn.classList.add('bg-primary');
+tourViewer.style.backgroundImage = 'url("https://readdy.ai/api/search-image?query=A%20detailed%203D%20model%20render%20of%20the%20Taj%20Mahal%20showing%20the%20complete%20structure%20with%20realistic%20textures%20and%20materials.%20The%20model%20should%20be%20well-lit%20and%20positioned%20against%20a%20neutral%20background%20to%20highlight%20architectural%20details.%20The%20perspective%20should%20show%20the%20front%20view%20with%20slight%20angle%20to%20demonstrate%20depth%20and%20dimensionality&width=1920&height=1080&seq=9&orientation=landscape")';
+});
+view360Btn.addEventListener('click', function() {
+view3DBtn.classList.remove('bg-primary');
+view360Btn.classList.add('bg-primary');
+tourViewer.style.backgroundImage = 'url("https://readdy.ai/api/search-image?query=A%20stunning%20360-degree%20panoramic%20view%20of%20the%20Taj%20Mahal%20in%20Agra%2C%20India%2C%20with%20pristine%20white%20marble%20architecture%2C%20beautiful%20gardens%2C%20and%20reflecting%20pools.%20The%20image%20should%20have%20a%20high%20dynamic%20range%20showing%20the%20intricate%20details%20of%20the%20monument%20with%20a%20clear%20blue%20sky%20background.%20The%20perspective%20should%20be%20from%20the%20main%20entrance%20pathway.&width=1920&height=1080&seq=1&orientation=landscape")';
+});
+// Hotspot interaction
+const hotspots = document.querySelectorAll('.hotspot');
+hotspots.forEach((hotspot, index) => {
+hotspot.id = `hotspot-${index + 1}`;
+hotspot.addEventListener('click', function(e) {
+const info = hotspotInfo[this.id];
+if (!info) return;
+const rect = this.getBoundingClientRect();
+popup.style.display = 'block';
+popup.style.left = `${rect.left + rect.width + 20}px`;
+popup.style.top = `${rect.top - 100}px`;
+const popupContent = popup.querySelector('.bg-black\\/50');
+popupContent.querySelector('h3').textContent = info.title;
+popupContent.querySelector('img').src = info.image;
+popupContent.querySelector('p').textContent = info.description;
+// Ensure popup stays within viewport
+const popupRect = popup.getBoundingClientRect();
+if (popupRect.right > window.innerWidth) {
+popup.style.left = `${rect.left - popupRect.width - 20}px`;
+}
+if (popupRect.bottom > window.innerHeight) {
+popup.style.top = `${window.innerHeight - popupRect.height - 20}px`;
+}
+});
+});
+// Close popup
+document.querySelector('.close-popup').addEventListener('click', function() {
+popup.style.display = 'none';
+});
+// Close popup when clicking outside
+document.addEventListener('click', function(e) {
+if (!popup.contains(e.target) && !e.target.closest('.hotspot')) {
+popup.style.display = 'none';
+}
+});
+// Toggle AI guide
+const aiToggle = document.querySelector('.custom-switch input');
+const guideAvatar = document.querySelector('.virtual-guide');
+aiToggle.addEventListener('change', function() {
+if (this.checked) {
+if (guideAvatar) guideAvatar.classList.remove('hidden');
+} else {
+if (guideAvatar) guideAvatar.classList.add('hidden');
+}
+});
+});
+</script>
+</body>
+</html>

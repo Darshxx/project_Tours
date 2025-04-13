@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Heritage360 - Preserving India's Cultural Legacy</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#3b82f6',secondary:'#6366f1'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #111827;
+  color: #f3f4f6;
+}
+.custom-switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+.custom-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(107, 114, 128, 0.5);
+  transition: .4s;
+  border-radius: 20px;
+}
+.switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+input:checked + .switch-slider {
+  background-color: #3b82f6;
+}
+input:checked + .switch-slider:before {
+  transform: translateX(20px);
+}
+.timeline-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 36px;
+  bottom: -16px;
+  width: 2px;
+  background-color: rgba(107, 114, 128, 0.5);
+}
+.team-card:hover .social-links {
+  opacity: 1;
+  transform: translateY(0);
+}
+.testimonial-card {
+  transition: all 0.3s ease;
+}
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}
+.stat-card {
+  transition: all 0.3s ease;
+}
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+.partner-card {
+  transition: all 0.3s ease;
+}
+.partner-card:hover {
+  transform: translateY(-5px);
+}
+</style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+<!-- Header Section -->
+<header class="bg-gray-800 shadow-sm">
+  <div class="container mx-auto px-4 flex items-center justify-between h-18">
+    <div class="flex items-center">
+      <a href="Heritage360.html" data-readdy="true" class="text-2xl font-['Pacifico'] text-primary mr-8">Heritage360</a>
+      <nav class="hidden md:flex space-x-6">
+        <a href="index.html" data-readdy="true" class="font-medium text-gray-400 hover:text-primary transition">Home</a>
+        <a href="Heritage360.html" data-readdy="true" class="font-medium text-gray-400 hover:text-primary transition">Explore</a>
+        <a href="About.html" class="font-medium text-primary">About</a>
+        <a href="#" class="font-medium text-gray-400 hover:text-primary transition">Contact</a>
+      </nav>
+    </div>
+    <div class="relative mx-4 flex-grow max-w-md">
+      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <div class="w-5 h-5 flex items-center justify-center text-gray-400">
+          <i class="ri-search-line"></i>
+        </div>
+      </div>
+      <input type="text" class="w-full pl-10 pr-4 py-2 border border-gray-700 rounded-full text-sm bg-gray-800 text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary" placeholder="Search heritage sites...">
+    </div>
+    <div class="flex items-center space-x-4">
+      <div class="relative">
+        <button class="flex items-center text-gray-400 hover:text-primary transition">
+          <span class="mr-1 text-sm">EN</span>
+          <div class="w-4 h-4 flex items-center justify-center">
+            <i class="ri-arrow-down-s-line"></i>
+          </div>
+        </button>
+      </div>
+      <button class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 transition !rounded-button">
+        <i class="ri-user-3-line"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="relative">
+  <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/90 to-transparent z-10"></div>
+  <div style="background-image: url('https://readdy.ai/api/search-image?query=A%2520majestic%2520panoramic%2520view%2520of%2520diverse%2520Indian%2520cultural%2520heritage%2520sites%2520including%2520ancient%2520temples%252C%2520palaces%252C%2520and%2520monuments%2520bathed%2520in%2520golden%2520sunset%2520light.%2520The%2520image%2520should%2520convey%2520a%2520sense%2520of%2520timelessness%2520and%2520cultural%2520richness%252C%2520with%2520architectural%2520details%2520highlighted%2520against%2520a%2520dramatic%2520sky.%2520The%2520left%2520side%2520should%2520blend%2520perfectly%2520with%2520a%2520dark%2520gray%2520background%2520for%2520text%2520overlay%252C%2520creating%2520a%2520seamless%2520transition%2520for%2520the%2520about%2520page%2520header.&width=1920&height=600&seq=13&orientation=landscape');" class="w-full h-80 bg-cover bg-center"></div>
+  <div class="container mx-auto px-4 relative z-20">
+    <div class="absolute top-1/2 left-0 transform -translate-y-1/2 max-w-2xl px-4">
+      <h1 class="text-4xl font-bold mb-4 text-white">About Heritage360</h1>
+      <p class="text-lg text-gray-200 mb-6">Preserving India's cultural legacy through immersive digital experiences. Discover our mission, our team, and the technology behind our virtual heritage tours.</p>
+      <div class="flex space-x-4">
+        <a href="https://readdy.ai/home/f0c4d383-315b-45aa-8f0d-8e49b1186bb9/1226ccd1-0021-41cf-93a8-9003d486601c" data-readdy="true" class="px-6 py-3 bg-gray-700/80 backdrop-blur-sm text-white font-medium rounded-md hover:bg-gray-600/80 transition flex items-center !rounded-button whitespace-nowrap">
+          <div class="w-5 h-5 flex items-center justify-center mr-2">
+            <i class="ri-arrow-left-line"></i>
+          </div>
+          <span>Back to Explore</span>
+        </a>
+        <button class="px-6 py-3 bg-primary text-white font-medium rounded-md hover:bg-primary/90 transition !rounded-button whitespace-nowrap">Our Mission</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission & Vision Section -->
+<section class="py-16 bg-gray-800/50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Our Mission & Vision</h2>
+      <p class="text-gray-300 max-w-3xl mx-auto">Heritage360 is dedicated to preserving and promoting India's rich cultural heritage through innovative digital experiences.</p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-gray-800 rounded-lg p-8 shadow-lg transition duration-300 hover:shadow-xl hover:transform hover:scale-[1.02]">
+        <div class="w-16 h-16 flex items-center justify-center bg-primary/10 text-primary rounded-full mb-6">
+          <i class="ri-compass-3-line ri-2x"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">Our Mission</h3>
+        <p class="text-gray-300 mb-4">To democratize access to India's cultural heritage by creating immersive digital experiences that transcend geographical boundaries, making these treasures accessible to everyone around the world.</p>
+        <p class="text-gray-300">We strive to document, preserve, and share India's architectural marvels, historical sites, and cultural landmarks through cutting-edge technology, ensuring these treasures are preserved digitally for future generations.</p>
+      </div>
+      
+      <div class="bg-gray-800 rounded-lg p-8 shadow-lg transition duration-300 hover:shadow-xl hover:transform hover:scale-[1.02]">
+        <div class="w-16 h-16 flex items-center justify-center bg-secondary/10 text-secondary rounded-full mb-6">
+          <i class="ri-eye-line ri-2x"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">Our Vision</h3>
+        <p class="text-gray-300 mb-4">To become the world's leading platform for digital heritage preservation and education, creating a comprehensive digital archive of India's cultural heritage that serves as both an educational resource and a tool for cultural preservation.</p>
+        <p class="text-gray-300">We envision a world where technology bridges the gap between past and present, allowing people to experience and connect with cultural heritage in ways previously unimaginable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Journey Timeline Section -->
+<section class="py-16">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Our Journey</h2>
+      <p class="text-gray-300 max-w-3xl mx-auto">From a small startup to India's leading heritage preservation platform, our journey has been defined by innovation, passion, and a deep respect for cultural heritage.</p>
+    </div>
+    
+    <div class="max-w-3xl mx-auto">
+      <!-- Timeline Item 1 -->
+      <div class="relative pl-12 pb-16 timeline-item">
+        <div class="absolute left-0 top-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center z-10">
+          <i class="ri-flag-line"></i>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+          <div class="flex items-center mb-3">
+            <span class="text-sm font-medium text-primary">January 2020</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Heritage360 Founded</h3>
+          <p class="text-gray-300">Started as a small team of heritage enthusiasts and tech innovators with a vision to digitally preserve India's cultural heritage.</p>
+        </div>
+      </div>
+      
+      <!-- Timeline Item 2 -->
+      <div class="relative pl-12 pb-16 timeline-item">
+        <div class="absolute left-0 top-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center z-10">
+          <i class="ri-building-line"></i>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+          <div class="flex items-center mb-3">
+            <span class="text-sm font-medium text-primary">June 2021</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Partnership with Archaeological Survey of India</h3>
+          <p class="text-gray-300">Formed a strategic partnership with ASI to gain access to historical sites and technical expertise, significantly expanding our reach and capabilities.</p>
+        </div>
+      </div>
+      
+      <!-- Timeline Item 3 -->
+      <div class="relative pl-12 pb-16 timeline-item">
+        <div class="absolute left-0 top-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center z-10">
+          <i class="ri-vr-ar-line"></i>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+          <div class="flex items-center mb-3">
+            <span class="text-sm font-medium text-primary">March 2022</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Launch of VR Heritage Tours</h3>
+          <p class="text-gray-300">Released our first set of immersive virtual reality tours featuring the Taj Mahal, Hampi, and Khajuraho temples, reaching over 100,000 users in the first month.</p>
+        </div>
+      </div>
+      
+      <!-- Timeline Item 4 -->
+      <div class="relative pl-12 pb-16 timeline-item">
+        <div class="absolute left-0 top-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center z-10">
+          <i class="ri-award-line"></i>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+          <div class="flex items-center mb-3">
+            <span class="text-sm font-medium text-primary">November 2023</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">UNESCO Recognition</h3>
+          <p class="text-gray-300">Received UNESCO recognition for our contributions to digital heritage preservation and cultural education, establishing Heritage360 as a global leader in the field.</p>
+        </div>
+      </div>
+      
+      <!-- Timeline Item 5 -->
+      <div class="relative pl-12 pb-16 timeline-item">
+        <div class="absolute left-0 top-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center z-10">
+          <i class="ri-global-line"></i>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+          <div class="flex items-center mb-3">
+            <span class="text-sm font-medium text-primary">April 2024</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">International Expansion</h3>
+          <p class="text-gray-300">Expanded our platform to include heritage sites from neighboring South Asian countries, furthering our mission to preserve and share cultural heritage globally.</p>
+        </div>
+      </div>
+      
+      <!-- Timeline Item 6 -->
+      <div class="relative pl-12 timeline-item">
+        <div class="absolute left-0 top-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center z-10">
+          <i class="ri-rocket-line"></i>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+          <div class="flex items-center mb-3">
+            <span class="text-sm font-medium text-primary">Today</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Heritage360 Platform</h3>
+          <p class="text-gray-300">Now featuring over 200 heritage sites across India with millions of monthly visitors, we continue to innovate and expand our digital preservation efforts.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team Section -->
+<section class="py-16 bg-gray-800/50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Meet Our Team</h2>
+      <p class="text-gray-300 max-w-3xl mx-auto">Our diverse team of heritage experts, technologists, and storytellers is united by a passion for preserving and sharing India's cultural heritage.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Team Member 1 -->
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg team-card">
+        <div class="relative">
+          <img src="https://readdy.ai/api/search-image?query=Professional%2520portrait%2520of%2520an%2520Indian%2520woman%2520in%2520her%2520mid-40s%2520with%2520short%2520black%2520hair%2520and%2520glasses%252C%2520wearing%2520professional%2520business%2520attire.%2520She%2520has%2520a%2520confident%2520expression%2520and%2520is%2520photographed%2520against%2520a%2520neutral%2520dark%2520background%2520with%2520professional%2520studio%2520lighting.%2520The%2520image%2520should%2520convey%2520leadership%2520and%2520expertise%2520in%2520a%2520cultural%2520heritage%2520or%2520technology%2520field.&width=400&height=400&seq=14&orientation=squarish" alt="Dr. Priya Sharma" class="w-full h-64 object-cover object-top">
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+            <div class="p-4 w-full">
+              <div class="flex justify-center space-x-3 social-links opacity-0 transform translate-y-4 transition-all duration-300">
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-primary transition !rounded-button">
+                  <i class="ri-linkedin-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-primary transition !rounded-button">
+                  <i class="ri-twitter-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-primary transition !rounded-button">
+                  <i class="ri-mail-line"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-1">Dr. Priya Sharma</h3>
+          <p class="text-primary mb-3">Founder & CEO</p>
+          <p class="text-gray-300 text-sm">Former archaeologist with 15+ years of experience in heritage conservation. PhD in Archaeological Sciences from Delhi University.</p>
+        </div>
+      </div>
+      
+      <!-- Team Member 2 -->
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg team-card">
+        <div class="relative">
+          <img src="https://readdy.ai/api/search-image?query=Professional%2520portrait%2520of%2520an%2520Indian%2520man%2520in%2520his%2520late%252030s%2520with%2520short%2520black%2520hair%2520and%2520a%2520neatly%2520trimmed%2520beard%252C%2520wearing%2520business%2520casual%2520attire%2520with%2520a%2520tech%2520industry%2520vibe.%2520He%2520has%2520a%2520friendly%2520but%2520professional%2520expression%2520and%2520is%2520photographed%2520against%2520a%2520neutral%2520dark%2520background%2520with%2520professional%2520studio%2520lighting.%2520The%2520image%2520should%2520convey%2520technical%2520expertise%2520and%2520innovation.&width=400&height=400&seq=15&orientation=squarish" alt="Vikram Mehta" class="w-full h-64 object-cover object-top">
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+            <div class="p-4 w-full">
+              <div class="flex justify-center space-x-3 social-links opacity-0 transform translate-y-4 transition-all duration-300">
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-primary transition !rounded-button">
+                  <i class="ri-linkedin-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-primary transition !rounded-button">
+                  <i class="ri-twitter-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-primary transition !rounded-button">
+                  <i class="ri-mail-line"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-1">Vikram Mehta</h3>
+          <p class="text-primary mb-3">CTO</p>
+          <p class="text-gray-300 text-sm">Former Google engineer with expertise in VR/AR technologies. Led the development of our proprietary 3D scanning and rendering technology.</p>
+        </div>
+      </div>
+      
+      <!-- Team Member 3 -->
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg team-card">
+        <div class="relative">
+          <img src="https://readdy.ai/api/search-image?query=Professional%2520portrait%2520of%2520an%2520Indian%2520woman%2520in%2520her%2520early%252030s%2520with%2520long%2520black%2520hair%252C%2520wearing%2520smart%2520casual%2520attire%2520with%2520a%2520creative%2520professional%2520style.%2520She%2520has%2520a%2520warm%252C%2520engaging%2520smile%2520and%2520is%2520photographed%2520against%2520a%2520neutral%2520dark%2520background%2520with%2520professional%2520studio%2520lighting.%2520The%2520image%2520should%2520convey%2520creativity%2520and%2520expertise%2520in%2520content%2520or%2520design.&width=400&height=400&seq=16&orientation=squarish" alt="Ananya Desai" class="w-full h-64 object-cover object-top">
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+            <div class="p-4 w-full">
+              <div class="flex justify-center space-x-3 social-links opacity-0 transform translate-y-4 transition-all duration-300">
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-primary transition !rounded-button">
+                  <i class="ri-linkedin-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-primary transition !rounded-button">
+                  <i class="ri-twitter-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-primary transition !rounded-button">
+                  <i class="ri-mail-line"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-1">Ananya Desai</h3>
+          <p class="text-primary mb-3">Creative Director</p>
+          <p class="text-gray-300 text-sm">Award-winning documentary filmmaker with a passion for storytelling. Leads our content creation and narrative development team.</p>
+        </div>
+      </div>
+      
+      <!-- Team Member 4 -->
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg team-card">
+        <div class="relative">
+          <img src="https://readdy.ai/api/search-image?query=Professional%2520portrait%2520of%2520an%2520Indian%2520man%2520in%2520his%2520mid-50s%2520with%2520salt-and-pepper%2520hair%2520and%2520distinguished%2520appearance%252C%2520wearing%2520formal%2520academic%2520or%2520professional%2520attire.%2520He%2520has%2520a%2520scholarly%252C%2520thoughtful%2520expression%2520and%2520is%2520photographed%2520against%2520a%2520neutral%2520dark%2520background%2520with%2520professional%2520studio%2520lighting.%2520The%2520image%2520should%2520convey%2520academic%2520expertise%2520and%2520authority%2520in%2520historical%2520or%2520cultural%2520studies.&width=400&height=400&seq=17&orientation=squarish" alt="Dr. Rajiv Iyer" class="w-full h-64 object-cover object-top">
+          <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+            <div class="p-4 w-full">
+              <div class="flex justify-center space-x-3 social-links opacity-0 transform translate-y-4 transition-all duration-300">
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-primary transition !rounded-button">
+                  <i class="ri-linkedin-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-primary transition !rounded-button">
+                  <i class="ri-twitter-fill"></i>
+                </a>
+                <a href="#" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-primary transition !rounded-button">
+                  <i class="ri-mail-line"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-1">Dr. Rajiv Iyer</h3>
+          <p class="text-primary mb-3">Head of Research</p>
+          <p class="text-gray-300 text-sm">Former professor of History and Archaeology at JNU with 25+ years of experience in Indian cultural heritage research and preservation.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center mt-12">
+      <button class="px-6 py-3 bg-gray-700 text-white font-medium rounded-md hover:bg-gray-600 transition !rounded-button whitespace-nowrap">View Full Team</button>
+    </div>
+  </div>
+</section>
+
+<!-- Technology Showcase Section -->
+<section class="py-16">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Our Technology</h2>
+      <p class="text-gray-300 max-w-3xl mx-auto">Cutting-edge technology that brings India's heritage to life through immersive digital experiences.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Technology 1 -->
+      <div class="bg-gray-800 rounded-lg p-8 shadow-lg transition duration-300 hover:shadow-xl hover:transform hover:scale-[1.02]">
+        <div class="w-16 h-16 flex items-center justify-center bg-primary/10 text-primary rounded-full mb-6">
+          <i class="ri-vr-ar-line ri-2x"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">VR/AR Experiences</h3>
+        <p class="text-gray-300 mb-6">Our immersive virtual reality tours allow users to explore heritage sites in incredible detail, with interactive elements that provide historical context and cultural insights.</p>
+        <ul class="space-y-2 text-gray-300 mb-6">
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex-shrink-0 flex items-center justify-center text-primary mr-2 mt-0.5">
+              <i class="ri-check-line"></i>
+            </div>
+            <span>360° panoramic views</span>
+          </li>
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex-shrink-0 flex items-center justify-center text-primary mr-2 mt-0.5">
+              <i class="ri-check-line"></i>
+            </div>
+            <span>Interactive hotspots with historical context</span>
+          </li>
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex-shrink-0 flex items-center justify-center text-primary mr-2 mt-0.5">
+              <i class="ri-check-line"></i>
+            </div>
+            <span>Compatible with all major VR headsets</span>
+          </li>
+        </ul>
+        <a href="#" class="text-primary hover:text-primary/80 transition flex items-center text-sm font-medium">
+          <span>Learn more about our VR technology</span>
+          <div class="w-5 h-5 flex items-center justify-center ml-1">
+            <i class="ri-arrow-right-line"></i>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Technology 2 -->
+      <div class="bg-gray-800 rounded-lg p-8 shadow-lg transition duration-300 hover:shadow-xl hover:transform hover:scale-[1.02]">
+        <div class="w-16 h-16 flex items-center justify-center bg-secondary/10 text-secondary rounded-full mb-6">
+          <i class="ri-3d-cube-line ri-2x"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">3D Scanning & Modeling</h3>
+        <p class="text-gray-300 mb-6">Our proprietary 3D scanning technology creates highly detailed digital models of heritage sites, preserving their architectural details with sub-millimeter accuracy.</p>
+        <ul class="space-y-2 text-gray-300 mb-6">
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex-shrink-0 flex items-center justify-center text-secondary mr-2 mt-0.5">
+              <i class="ri-check-line"></i>
+            </div>
+            <span>Sub-millimeter accuracy</span>
+          </li>
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex-shrink-0 flex items-center justify-center text-secondary mr-2 mt-0.5">
+              <i class="ri-check-line"></i>
+            </div>
+            <span>Photorealistic textures and materials</span>
+          </li>
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex-shrink-0 flex items-center justify-center text-secondary mr-2 mt-0.5">
+              <i class="ri-check-line"></i>
+            </div>
+            <span>Digital preservation for future generations</span>
+          </li>
+        </ul>
+        <a href="#" class="text-secondary hover:text-secondary/80 transition flex items-center text-sm font-medium">
+          <span>Explore our 3D modeling process</span>
+          <div class="w-5 h-5 flex items-center justify-center ml-1">
+            <i class="ri-arrow-right-line"></i>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Technology 3 -->
+      <div class="bg-gray-800 rounded-lg p-8 shadow-lg transition duration-300 hover:shadow-xl hover:transform hover:scale-[1.02]">
+        <div class="w-16 h-16 flex items-center justify-center bg-primary/10 text-primary rounded-full mb-6">
+          <i class="ri-ai-generate ri-2x"></i>
+        </div>
+        <h3 class="text-xl font-semibold mb-4">AI-Powered Insights</h3>
+        <p class="text-gray-300 mb-6">Our AI technology enhances the visitor experience by providing personalized insights, historical context, and cultural information based on user interests and behavior.</p>
+        <ul class="space-y-2 text-gray-300 mb-6">
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex-shrink-0 flex items-center justify-center text-primary mr-2 mt-0.5">
+              <i class="ri-check-line"></i>
+            </div>
+            <span>Personalized tour recommendations</span>
+          </li>
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex-shrink-0 flex items-center justify-center text-primary mr-2 mt-0.5">
+              <i class="ri-check-line"></i>
+            </div>
+            <span>Contextual historical information</span>
+          </li>
+          <li class="flex items-start">
+            <div class="w-5 h-5 flex-shrink-0 flex items-center justify-center text-primary mr-2 mt-0.5">
+              <i class="ri-check-line"></i>
+            </div>
+            <span>Multilingual audio guides</span>
+          </li>
+        </ul>
+        <a href="#" class="text-primary hover:text-primary/80 transition flex items-center text-sm font-medium">
+          <span>Discover our AI capabilities</span>
+          <div class="w-5 h-5 flex items-center justify-center ml-1">
+            <i class="ri-arrow-right-line"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Partnerships Section -->
+<section class="py-16 bg-gray-800/50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Our Partners</h2>
+      <p class="text-gray-300 max-w-3xl mx-auto">We collaborate with leading cultural institutions, government bodies, and technology partners to preserve and share India's cultural heritage.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Partner 1 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg partner-card">
+        <div class="flex items-center justify-center mb-6">
+          <div class="w-20 h-20 flex items-center justify-center bg-white/10 rounded-full">
+            <i class="ri-government-line text-primary ri-2x"></i>
+          </div>
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-center">Archaeological Survey of India</h3>
+        <p class="text-gray-400 text-sm text-center mb-4">Official partner for heritage site access and historical research</p>
+        <div class="bg-gray-700/50 rounded p-4">
+          <p class="text-gray-300 text-sm italic">"Heritage360's digital preservation efforts are helping us safeguard India's cultural treasures for future generations."</p>
+          <p class="text-right text-primary text-sm mt-2">- Dr. Anil Kumar, Director General</p>
+        </div>
+      </div>
+      
+      <!-- Partner 2 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg partner-card">
+        <div class="flex items-center justify-center mb-6">
+          <div class="w-20 h-20 flex items-center justify-center bg-white/10 rounded-full">
+            <i class="ri-building-4-line text-secondary ri-2x"></i>
+          </div>
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-center">Ministry of Culture</h3>
+        <p class="text-gray-400 text-sm text-center mb-4">Government partnership for cultural heritage promotion</p>
+        <div class="bg-gray-700/50 rounded p-4">
+          <p class="text-gray-300 text-sm italic">"The innovative approach of Heritage360 aligns perfectly with our mission to promote India's rich cultural heritage globally."</p>
+          <p class="text-right text-secondary text-sm mt-2">- Smt. Meenakshi Sharma, Joint Secretary</p>
+        </div>
+      </div>
+      
+      <!-- Partner 3 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg partner-card">
+        <div class="flex items-center justify-center mb-6">
+          <div class="w-20 h-20 flex items-center justify-center bg-white/10 rounded-full">
+            <i class="ri-global-line text-primary ri-2x"></i>
+          </div>
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-center">UNESCO India</h3>
+        <p class="text-gray-400 text-sm text-center mb-4">Collaboration on World Heritage Site preservation</p>
+        <div class="bg-gray-700/50 rounded p-4">
+          <p class="text-gray-300 text-sm italic">"Heritage360 exemplifies how technology can be harnessed for cultural preservation and education on a global scale."</p>
+          <p class="text-right text-primary text-sm mt-2">- Eric Williams, Regional Director</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mt-12 bg-gray-800 rounded-lg p-8 shadow-lg">
+      <h3 class="text-xl font-semibold mb-6 text-center">Technology Partners</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 flex items-center justify-center bg-white/10 rounded-full mb-3">
+            <i class="ri-google-fill text-gray-300 ri-2x"></i>
+          </div>
+          <p class="text-gray-300 text-sm">Google Arts & Culture</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 flex items-center justify-center bg-white/10 rounded-full mb-3">
+            <i class="ri-microsoft-fill text-gray-300 ri-2x"></i>
+          </div>
+          <p class="text-gray-300 text-sm">Microsoft</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 flex items-center justify-center bg-white/10 rounded-full mb-3">
+            <i class="ri-meta-fill text-gray-300 ri-2x"></i>
+          </div>
+          <p class="text-gray-300 text-sm">Meta</p>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-16 h-16 flex items-center justify-center bg-white/10 rounded-full mb-3">
+            <i class="ri-adobe-fill text-gray-300 ri-2x"></i>
+          </div>
+          <p class="text-gray-300 text-sm">Adobe</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Conservation Impact Section -->
+<section class="py-16">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">Our Impact</h2>
+      <p class="text-gray-300 max-w-3xl mx-auto">Beyond digital preservation, we're committed to supporting tangible conservation efforts across India's heritage sites.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <!-- Stat 1 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg text-center stat-card">
+        <div class="w-16 h-16 flex items-center justify-center bg-primary/10 text-primary rounded-full mx-auto mb-4">
+          <i class="ri-building-4-line ri-2x"></i>
+        </div>
+        <div class="text-4xl font-bold mb-2">248</div>
+        <p class="text-gray-300">Heritage Sites Digitized</p>
+      </div>
+      
+      <!-- Stat 2 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg text-center stat-card">
+        <div class="w-16 h-16 flex items-center justify-center bg-secondary/10 text-secondary rounded-full mx-auto mb-4">
+          <i class="ri-user-3-line ri-2x"></i>
+        </div>
+        <div class="text-4xl font-bold mb-2">5.2M+</div>
+        <p class="text-gray-300">Monthly Virtual Visitors</p>
+      </div>
+      
+      <!-- Stat 3 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg text-center stat-card">
+        <div class="w-16 h-16 flex items-center justify-center bg-primary/10 text-primary rounded-full mx-auto mb-4">
+          <i class="ri-funds-box-line ri-2x"></i>
+        </div>
+        <div class="text-4xl font-bold mb-2">₹42M</div>
+        <p class="text-gray-300">Contributed to Conservation</p>
+      </div>
+      
+      <!-- Stat 4 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg text-center stat-card">
+        <div class="w-16 h-16 flex items-center justify-center bg-secondary/10 text-secondary rounded-full mx-auto mb-4">
+          <i class="ri-global-line ri-2x"></i>
+        </div>
+        <div class="text-4xl font-bold mb-2">180+</div>
+        <p class="text-gray-300">Countries Reached</p>
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://readdy.ai/api/search-image?query=A%2520team%2520of%2520conservationists%2520and%2520archaeologists%2520carefully%2520working%2520on%2520restoring%2520ancient%2520stone%2520carvings%2520or%2520sculptures%2520at%2520an%2520Indian%2520heritage%2520site.%2520The%2520image%2520should%2520show%2520detailed%2520conservation%2520work%2520in%2520progress%252C%2520with%2520specialists%2520using%2520tools%2520and%2520equipment%2520for%2520preservation.%2520The%2520lighting%2520should%2520highlight%2520the%2520intricate%2520details%2520of%2520the%2520heritage%2520artifacts%2520being%2520restored%252C%2520creating%2520a%2520sense%2520of%2520careful%252C%2520meticulous%2520work.&width=600&height=400&seq=18&orientation=landscape" alt="Conservation Efforts" class="w-full h-64 object-cover object-top">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-3">Conservation Initiatives</h3>
+          <p class="text-gray-300 mb-4">A portion of all Heritage360 subscription revenue goes directly to conservation projects at the heritage sites we document. Our Conservation Fund has supported restoration projects at over 35 sites across India.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-gray-700 rounded-full text-sm text-gray-300">Structural Restoration</span>
+            <span class="px-3 py-1 bg-gray-700 rounded-full text-sm text-gray-300">Art Conservation</span>
+            <span class="px-3 py-1 bg-gray-700 rounded-full text-sm text-gray-300">Environmental Protection</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://readdy.ai/api/search-image?query=A%2520diverse%2520group%2520of%2520students%2520or%2520young%2520people%2520participating%2520in%2520an%2520educational%2520workshop%2520about%2520Indian%2520cultural%2520heritage.%2520The%2520image%2520should%2520show%2520them%2520engaged%2520with%2520digital%2520tools%2520like%2520tablets%2520or%2520VR%2520headsets%2520while%2520learning%2520about%2520historical%2520monuments.%2520The%2520setting%2520should%2520be%2520a%2520modern%2520classroom%2520or%2520educational%2520space%2520with%2520cultural%2520heritage%2520imagery%2520visible%2520in%2520the%2520background.%2520The%2520lighting%2520should%2520be%2520bright%2520and%2520clear%252C%2520highlighting%2520the%2520educational%2520environment.&width=600&height=400&seq=19&orientation=landscape" alt="Educational Outreach" class="w-full h-64 object-cover object-top">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-3">Educational Outreach</h3>
+          <p class="text-gray-300 mb-4">Our Heritage Education Program has reached over 500,000 students across India, providing free access to our platform for schools and educational institutions to foster appreciation for cultural heritage.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-gray-700 rounded-full text-sm text-gray-300">School Programs</span>
+            <span class="px-3 py-1 bg-gray-700 rounded-full text-sm text-gray-300">University Partnerships</span>
+            <span class="px-3 py-1 bg-gray-700 rounded-full text-sm text-gray-300">Community Workshops</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-16 bg-gray-800/50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">What People Say</h2>
+      <p class="text-gray-300 max-w-3xl mx-auto">Hear from our users, partners, and heritage experts about the impact of Heritage360.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Testimonial 1 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg testimonial-card">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-full mr-4">
+            <i class="ri-user-3-line"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold">Rahul Sharma</h4>
+            <p class="text-gray-400 text-sm">History Teacher, Delhi Public School</p>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="flex text-yellow-400 mb-2">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p class="text-gray-300">"Heritage360 has transformed how I teach Indian history to my students. The immersive virtual tours bring historical sites to life in ways textbooks never could. My students are more engaged and retain information better."</p>
+        </div>
+        <p class="text-gray-400 text-sm">March 15, 2025</p>
+      </div>
+      
+      <!-- Testimonial 2 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg testimonial-card">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 flex items-center justify-center bg-secondary/10 text-secondary rounded-full mr-4">
+            <i class="ri-user-3-line"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold">Dr. Meera Patel</h4>
+            <p class="text-gray-400 text-sm">Conservation Architect</p>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="flex text-yellow-400 mb-2">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p class="text-gray-300">"The level of detail in Heritage360's 3D scans is remarkable. As a conservation architect, I've found their digital models invaluable for planning restoration work, especially for structures with difficult access."</p>
+        </div>
+        <p class="text-gray-400 text-sm">February 3, 2025</p>
+      </div>
+      
+      <!-- Testimonial 3 -->
+      <div class="bg-gray-800 rounded-lg p-6 shadow-lg testimonial-card">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-full mr-4">
+            <i class="ri-user-3-line"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold">Sarah Johnson</h4>
+            <p class="text-gray-400 text-sm">Tourist from USA</p>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="flex text-yellow-400 mb-2">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+          <p class="text-gray-300">"I used Heritage360 to plan my trip to India, and it completely transformed my experience. Being able to virtually explore sites beforehand helped me prioritize my itinerary and understand the historical context much better."</p>
+        </div>
+        <p class="text-gray-400 text-sm">January 22, 2025</p>
+      </div>
+    </div>
+    
+    <div class="flex justify-center mt-10">
+      <button class="px-6 py-3 bg-gray-700 text-white font-medium rounded-md hover:bg-gray-600 transition !rounded-button whitespace-nowrap">View More Testimonials</button>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-16 relative">
+  <div class="absolute inset-0 opacity-20" style="background-image: url('https://readdy.ai/api/search-image?query=A%2520subtle%2520background%2520texture%2520featuring%2520faded%2520Indian%2520architectural%2520patterns%2520and%2520motifs%2520from%2520various%2520heritage%2520sites.%2520The%2520image%2520should%2520be%2520very%2520low%2520contrast%2520and%2520desaturated%252C%2520creating%2520a%2520delicate%2520backdrop%2520that%2520won%2527t%2520compete%2520with%2520text%2520overlay.%2520The%2520design%2520elements%2520should%2520be%2520barely%2520visible%252C%2520creating%2520a%2520sophisticated%2520texture%2520rather%2520than%2520distinct%2520imagery%252C%2520perfect%2520for%2520a%2520call-to-action%2520section%2520background.&width=1920&height=600&seq=20&orientation=landscape'); background-size: cover; background-position: center;"></div>
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-4xl mx-auto bg-gray-800/90 backdrop-blur-sm rounded-lg p-10 shadow-xl">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold mb-4">Join Us in Preserving India's Heritage</h2>
+        <p class="text-gray-300">Experience the rich cultural tapestry of India through our immersive virtual tours and help support our conservation efforts.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-gray-700/50 rounded-lg p-6">
+          <div class="w-12 h-12 flex items-center justify-center bg-primary/20 text-primary rounded-full mb-4">
+            <i class="ri-vr-ar-line ri-lg"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Explore Virtual Tours</h3>
+          <p class="text-gray-300 mb-4">Discover India's cultural heritage from anywhere in the world through our immersive virtual tours.</p>
+          <a href="https://readdy.ai/home/f0c4d383-315b-45aa-8f0d-8e49b1186bb9/1226ccd1-0021-41cf-93a8-9003d486601c" data-readdy="true" class="px-4 py-2 bg-primary text-white rounded-md inline-flex items-center hover:bg-primary/90 transition !rounded-button whitespace-nowrap">
+            <span>Start Exploring</span>
+            <div class="w-5 h-5 flex items-center justify-center ml-1">
+              <i class="ri-arrow-right-line"></i>
+            </div>
+          </a>
+        </div>
+        
+        <div class="bg-gray-700/50 rounded-lg p-6">
+          <div class="w-12 h-12 flex items-center justify-center bg-secondary/20 text-secondary rounded-full mb-4">
+            <i class="ri-heart-line ri-lg"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Support Conservation</h3>
+          <p class="text-gray-300 mb-4">Contribute to our conservation fund and help preserve India's cultural heritage for future generations.</p>
+          <button class="px-4 py-2 bg-secondary text-white rounded-md inline-flex items-center hover:bg-secondary/90 transition !rounded-button whitespace-nowrap">
+            <span>Donate Now</span>
+            <div class="w-5 h-5 flex items-center justify-center ml-1">
+              <i class="ri-arrow-right-line"></i>
+            </div>
+          </button>
+        </div>
+      </div>
+      
+      <div class="bg-gray-700/30 rounded-lg p-6">
+        <h3 class="text-xl font-semibold mb-4 text-center">Stay Updated</h3>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <input type="email" placeholder="Enter your email address" class="flex-grow px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+          <button class="px-6 py-3 bg-primary text-white font-medium rounded-md hover:bg-primary/90 transition !rounded-button whitespace-nowrap">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 pt-10 pb-6 border-t border-gray-700">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <div>
+        <a href="https://readdy.ai/home/f0c4d383-315b-45aa-8f0d-8e49b1186bb9/1226ccd1-0021-41cf-93a8-9003d486601c" data-readdy="true" class="text-2xl font-['Pacifico'] text-primary mb-4 inline-block">Heritage360</a>
+        <p class="text-gray-400 mb-4">Experience India's rich cultural heritage through immersive AI-powered virtual tours.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 transition !rounded-button">
+            <i class="ri-facebook-fill"></i>
+          </a>
+          <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 transition !rounded-button">
+            <i class="ri-twitter-x-fill"></i>
+          </a>
+          <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 transition !rounded-button">
+            <i class="ri-instagram-fill"></i>
+          </a>
+          <a href="#" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 transition !rounded-button">
+            <i class="ri-youtube-fill"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="index.html" data-readdy="true" class="text-gray-400 hover:text-primary transition">Home</a></li>
+          <li><a href="Heritage360.html" data-readdy="true" class="text-gray-400 hover:text-primary transition">Explore</a></li>
+          <li><a href="About.html" class="text-primary">About Us</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition">Contact</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition">Blog</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Support</h3>
+        <ul class="space-y-2">
+          <li><a href="#" class="text-gray-400 hover:text-primary transition">Help Center</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition">FAQs</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition">Privacy Policy</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition">Terms of Service</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-primary transition">Accessibility</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+        <ul class="space-y-2">
+          <li class="flex items-center text-gray-400">
+            <div class="w-5 h-5 flex items-center justify-center mr-2">
+              <i class="ri-map-pin-line"></i>
+            </div>
+            <span>123 Heritage Lane, New Delhi, India</span>
+          </li>
+          <li class="flex items-center text-gray-400">
+            <div class="w-5 h-5 flex items-center justify-center mr-2">
+              <i class="ri-mail-line"></i>
+            </div>
+            <span>info@heritage360.com</span>
+          </li>
+          <li class="flex items-center text-gray-400">
+            <div class="w-5 h-5 flex items-center justify-center mr-2">
+              <i class="ri-phone-line"></i>
+            </div>
+            <span>+91 98765 43210</span>
+          </li>
+        </ul>
+        <div class="mt-4">
+          <h4 class="text-sm font-medium mb-2">Download Our App</h4>
+          <div class="flex space-x-2">
+            <a href="#" class="bg-gray-700 hover:bg-gray-600 transition rounded p-2 !rounded-button">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-apple-fill"></i>
+              </div>
+            </a>
+            <a href="#" class="bg-gray-700 hover:bg-gray-600 transition rounded p-2 !rounded-button">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-android-fill"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="pt-6 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Heritage360. All rights reserved.</p>
+      <div class="flex space-x-4">
+        <div class="w-8 h-8 flex items-center justify-center">
+          <i class="ri-visa-fill text-gray-400 text-xl"></i>
+        </div>
+        <div class="w-8 h-8 flex items-center justify-center">
+          <i class="ri-mastercard-fill text-gray-400 text-xl"></i>
+        </div>
+        <div class="w-8 h-8 flex items-center justify-center">
+          <i class="ri-paypal-fill text-gray-400 text-xl"></i>
+        </div>
+        <div class="w-8 h-8 flex items-center justify-center">
+          <i class="ri-amazon-pay-fill text-gray-400 text-xl"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Testimonial cards hover effect
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+  testimonialCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-5px)';
+      this.style.boxShadow = '0 10px 25px -5px rgba(0, 0, 0, 0.3)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = '';
+    });
+  });
+  
+  // Partner cards hover effect
+  const partnerCards = document.querySelectorAll('.partner-card');
+  partnerCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-5px)';
+      this.style.boxShadow = '0 10px 25px -5px rgba(0, 0, 0, 0.3)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = '';
+    });
+  });
+  
+  // Stat cards hover effect
+  const statCards = document.querySelectorAll('.stat-card');
+  statCards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-5px)';
+      this.style.boxShadow = '0 10px 25px -5px rgba(0, 0, 0, 0.3)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = '';
+    });
+  });
+  
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
